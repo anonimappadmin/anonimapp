@@ -125,13 +125,7 @@ Voice notes are saved as `.webm` files and follow the same key and expiration lo
    * Limit audio file size and validate uploads.
    * Switch from SQLite to PostgreSQL for scalability:
       * Suggested migratin path: SQALchemy ORM
-
-## 🛡️ Security Considerations
-- No authentication required = no user data stored
-- One-time keys prevent replay attacks
-- Views and expiration timers eliminate persistent storage
-- Voice files are deleted after expiration (auto-cleanup pending)
-- Upload size limits help prevent abuse
+     
 
 ## 📁 Project Structure
 ```csharp
