@@ -119,7 +119,7 @@ Voice notes are saved as `.webm` files and follow the same key and expiration lo
 - Upload size limits help prevent abuse
 
 ## 📁 Project Structure
-```csharp```
+```csharp
 anonimapp/
 │
 ├── app.py               # Main application
