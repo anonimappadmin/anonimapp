@@ -78,4 +78,62 @@ Voice notes are saved as `.webm` files and follow the same key and expiration lo
    git clone https://github.com/anonimappadmin/anonimapp.git
    cd anonimapp
 
-2. 
+2. **Create Virtual Environment
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+3. **Install Dependencies
+   ```bash
+   pip install -r requirements.txt
+
+4. **Run Locally - a
+   ```bash
+   python app.py
+
+5. **Run Locally - b
+   ```bash
+   flask run
+
+6. **Then open your browser at:
+   ```cpp
+   http://127.0.0.1:5000
+
+7. **Deployment - Recommended Platforms
+   * Railway.app
+   * Render.com
+   * Fly.io
+
+## Setup Notes
+   * Store secrects in .env file:
+      * FLASK_SECRET_KEY=your_secret_here
+   * Limit audio file size and validate uploads.
+   * Switch from SQLite to PostgreSQL for scalability:
+      * Suggested migratin path: SQALchemy ORM
+
+## 🛡️ Security Considerations
+- No authentication required = no user data stored
+- One-time keys prevent replay attacks
+- Views and expiration timers eliminate persistent storage
+- Voice files are deleted after expiration (auto-cleanup pending)
+- Upload size limits help prevent abuse
+
+## 📁 Project Structure
+```csharp
+anonimapp/
+│
+├── app.py               # Main application
+├── database.py          # DB logic and helpers
+├── create_admin.py      # Add admin account
+├── static/              # Assets (QR codes, audio files)
+│   ├── voices/
+│   └── qr/
+├── templates/           # Jinja2 HTML templates
+├── requirements.txt     # Python dependencies
+├── anonimapp.db         # SQLite database (local)
+└── README.md
+
+## 📜 License
+
+
+  
