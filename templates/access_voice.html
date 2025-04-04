@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-10">
+    <div class="row justify-content-center">
+        <div class="mx-auto" style="max-width: 1980px;">
+            <div class="text-center mb-5 shadow-sm p-4 rounded bg-white">
+                <h2 class="mb-4" style="font-family: 'Josefin Sans', sans-serif;">
+                    <i class="bi bi-key-fill"></i> 🔐 Access Private Voice Message
+                </h2>
+                <form method="POST" class="d-flex flex-column align-items-center">
+                    <input type="text" name="voice_key" class="form-control mb-3 rounded-pill" placeholder="Enter voice key..." required style="padding: 0.75rem 1rem; width: 100%; max-width: 500px;">
+                    <button type="submit" class="btn btn-primary rounded-pill" style="padding: 0.75rem 1.5rem;">🎧 Access Voice</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

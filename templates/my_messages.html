@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5" style="max-width: 700px; font-family: 'Josefin Sans', sans-serif;">
+
+  <h2 class="gradient-text fw-bold mb-4 text-center">
+    <i class="bi bi-folder-fill me-2"></i>My Messages
+  </h2>
+
+  <div class="alert alert-dark mt-4 rounded-pill text-center text-light border-0" style="background-color: #1a1a1a;">
+    <i class="bi bi-info-circle me-2"></i>
+    Messages are automatically deleted after reaching their view limit or time expiration.
+  </div>
+
+  {% if messages %}
+    {% for msg in messages %}
+    <div class="card mb-4 shadow-sm border-0 rounded-4 px-4 py-3" style="background-color: rgba(255, 255, 255, 0.03); backdrop-filter: blur(6px);">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <small class="text-light">
+          <i class="bi bi-clock me-1"></i>{{ msg[5]|humantime }}
+        </small>
+        <span class="badge rounded-pill bg-purple text-white">
+          <i class="bi bi-eye me-1"></i>{{ msg[4] }} views remaining
+        </span>
+      </div>
+
+      <!--<h5 class="fw-bold mb-2 text-light">{{ msg[1] or 'Untitled Message' }}</h5>-->    
+
+      {% if msg[3] == 1 %}
+        <h5 class="fw-bold mb-2 text-light">{{ msg[1] or 'ATTN: Voice messages are untitled' }}</h5>
+        <p class="text-light mb-2">Click "Play" to listen to this voice message.</p>
+
+      {% else %}
+        <h5 class="fw-bold mb-2 text-light">{{ msg[1] or 'Untitled message' }}</h5>
+        <p class="text-light mb-2">Click "Read" to view this message.</p>
+      {% endif %}
+
+      <div class="d-flex justify-content-end">
+        {% if msg[4] <= 0 %}
+          <span class="btn btn-danger btn-sm disabled">Expired</span>
+        {% else %}
+          {% if msg[3] == 1 %}
+            <a href="{{ url_for('play_voice', voice_id=msg[0]) }}" class="btn gradient-btn btn-sm">Play</a>
+          {% else %}
+            <a href="{{ url_for('view_message', message_id=msg[0]) }}" class="btn gradient-btn btn-sm">Read</a>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="text-center py-5">
+      <p class="text-light fs-5">You haven’t created any messages yet.</p>
+      <a href="{{ url_for('submit') }}" class="btn btn-outline-light rounded-pill">Create a Message</a>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

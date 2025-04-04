@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Help & Walkthroughs – Anonimapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #f8f9fa;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    .container {
+      max-width: 800px;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 2rem;
+    }
+    .walk-box {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .walk-box h5 {
+      font-weight: 600;
+    }
+    .walk-box i {
+      color: #a855f7;
+      margin-right: 0.5rem;
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-btn {
+      background: linear-gradient(to right, #8b5cf6, #ec4899);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      color: white;
+      border-radius: 0.5rem;
+      transition: 0.3s ease;
+    }
+    .gradient-btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg px-4 py-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center fw-bold gradient-text" href="/">
+        <i class="bi bi-incognito"></i>nonimapp
+      </a>
+      <div>
+        <a href="/" class="nav-link d-inline-block text-light me-3">Home</a>
+        <a href="/help" class="nav-link d-inline-block text-light me-3">Help</a>
+        <a href="/privacy" class="nav-link d-inline-block text-light me-3">Privacy</a>
+        <a href="/donate" class="nav-link d-inline-block text-light me-3">Donate</a>
+        <a href="/access_message" class="btn btn-outline-light me-2">Access Messages</a>
+        <a href="/my_messages" class="btn btn-outline-light me-2">My Messages</a>
+        <a href="/submit" class="btn gradient-btn">New Message</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container py-5">
+    <h1 class="section-title text-center">Help & Walkthroughs</h1>
+
+    <div class="walk-box">
+      <h5><i class="bi bi-pencil-square"></i>How to Post an Anonymous Text Message</h5>
+      <p>Go to <strong>New Message</strong> from the top menu. Type your message, give it an optional subject, and hit <strong>Send Anonymous Message</strong>. You'll get a shareable link and QR code.</p>
+    </div>
+
+    <div class="walk-box">
+      <h5><i class="bi bi-mic-fill"></i>How to Record a Voice Message</h5>
+      <p>Switch to the <strong>Voice</strong> tab on the New Message page. Tap the mic to record, then send. Share the generated link like a normal message. Only one playback per recipient.</p>
+    </div>
+
+    <div class="walk-box">
+      <h5><i class="bi bi-link-45deg"></i>How to Access a Message You've Received</h5>
+      <p>Use the <strong>Access Message</strong> button or go directly to the shared link. Enter the access key if prompted. Remember: keys can be used only once.</p>
+    </div>
+
+    <div class="walk-box">
+      <h5><i class="bi bi-folder2-open"></i>How to View Messages You've Sent</h5>
+      <p>Click on <strong>My Messages</strong>. We use <code>localStorage</code> to show you what you've sent from your device. If you've cleared your browser or changed devices, they won't appear here.</p>
+    </div>
+
+    <div class="walk-box">
+      <h5><i class="bi bi-shield-lock"></i>How to Stay Private</h5>
+      <p>Use Tor for extra privacy. Avoid sharing personally identifiable information in your messages. Your IP isn't tracked, but your device can still give clues.</p>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="/" class="btn btn-outline-light">⬅ Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>

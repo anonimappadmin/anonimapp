@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Terms of Use – Anonimapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #000;
+      color: #f8f9fa;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    .container {
+      max-width: 800px;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+    .terms-box {
+      background-color: rgba(255, 255, 255, 0.03);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-btn {
+      background: linear-gradient(to right, #8b5cf6, #ec4899);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      color: white;
+      border-radius: 0.5rem;
+      transition: 0.3s ease;
+    }
+    .gradient-btn:hover {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg px-4 py-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center fw-bold gradient-text" href="/">
+        <i class="bi bi-incognito"></i>nonimapp
+      </a>
+      <div>
+        <a href="/" class="nav-link d-inline-block text-light me-3">Home</a>
+        <a href="/help" class="nav-link d-inline-block text-light me-3">Help</a>
+        <a href="/privacy" class="nav-link d-inline-block text-light me-3">Privacy</a>
+        <a href="/donate" class="nav-link d-inline-block text-light me-3">Donate</a>
+        <a href="/access_message" class="btn btn-outline-light me-2">Access Messages</a>
+        <a href="/my_messages" class="btn btn-outline-light me-2">My Messages</a>
+        <a href="/submit" class="btn gradient-btn">New Message</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Terms Content -->
+  <div class="container py-5">
+    <h1 class="section-title text-center">Terms of Use</h1>
+
+    <div class="terms-box">
+      <p>Anonimapp exists to protect voices that need safety — not to harbor abuse. By using this platform, you agree not to use it for any unlawful, exploitative, or malicious purpose. This includes, but is not limited to:</p>
+      <ul>
+        <li>Harassment, stalking, or doxxing</li>
+        <li>Threats of violence or terrorism</li>
+        <li>Child exploitation or abuse</li>
+        <li>Organized crime or fraud</li>
+        <li>Spreading hateful or discriminatory content</li>
+      </ul>
+    </div>
+
+    <div class="terms-box">
+      <h4 class="mb-2"><i class="bi bi-shield-check me-2"></i>Legal Compliance</h4>
+      <p>
+        While Anonimapp is designed with privacy as a core value, we operate under the laws of our hosting jurisdiction. If legally compelled by a valid court order or lawful request from authorities, we may be required to disclose specific information — to the extent we have any.
+      </p>
+      <p>
+        However, since we do not collect personal identifiers, store IP addresses, or track user activity, our ability to provide meaningful data is extremely limited by design.
+      </p>
+      <p class="fst-italic">In other words: we don’t keep what we don’t want to be asked for.</p>
+    </div>
+
+    <div class="terms-box">
+      <h4 class="mb-2"><i class="bi bi-lock-fill me-2"></i>Data Handling</h4>
+      <ul>
+        <li>Messages self-destruct after 3 views or 30 seconds (whichever comes first).</li>
+        <li>Voice messages are auto-deleted after playback.</li>
+        <li>We use <code>localStorage</code> only to help you remember messages you sent. No data is synced or tracked externally.</li>
+      </ul>
+    </div>
+
+    <div class="terms-box">
+      <h4 class="mb-2"><i class="bi bi-globe me-2"></i>Jurisdiction</h4>
+      <p>
+        This platform is governed by the laws of the country or region in which it is hosted. If you're accessing Anonimapp from another jurisdiction, it's your responsibility to ensure that your use complies with your local laws.
+      </p>
+    </div>
+
+    <div class="terms-box">
+      <h4 class="mb-2"><i class="bi bi-person-check-fill me-2"></i>Responsibility & Reporting</h4>
+      <p>
+        We take misuse seriously. If you believe someone is using Anonimapp to cause harm, please <a href="mailto:report@anonimapp.org" class="text-light">contact us</a> immediately.
+      </p>
+    </div>
+
+    <footer class="text-center mt-5 text-light small">
+      &copy; 2025 Anonimapp — Privacy is not a loophole. It’s a human right.
+    </footer>
+  </div>
+
+</body>
+</html>

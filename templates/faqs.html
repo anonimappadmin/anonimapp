@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-5" style="max-width: 800px;">
+  <h1 class="gradient-text fw-bold mb-4 text-center">Frequently Asked Questions</h1>
+
+  <div class="accordion accordion-flush" id="faqAccordion">
+
+    <!-- Message Visibility -->
+    <div class="accordion-item bg-transparent border border-secondary rounded mb-3">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+          Can I view messages I've sent?
+        </button>
+      </h2>
+      <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body text-light">
+          Yes, via the <strong>My Messages</strong> tab. However, this only works on the same device and browser you originally used — we use <code>localStorage</code>. If you switch devices or clear browser data, those messages won’t appear anymore.
+        </div>
+      </div>
+    </div>
+
+    <!-- Message Expiration -->
+    <div class="accordion-item bg-transparent border border-secondary rounded mb-3">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+          Do messages really disappear?
+        </button>
+      </h2>
+      <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body text-light">
+          Yes. Messages self-destruct after <strong>3 views or 30 seconds</strong> — whichever comes first. Even if your sent message still appears under "My Messages," it can only be viewed 3 times, regardless of whether it’s opened from the My Messages tab or from a shared link.
+        </div>
+      </div>
+    </div>
+
+    <!-- Device Specificity -->
+    <div class="accordion-item bg-transparent border border-secondary rounded mb-3">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+          Can I access messages on a different device?
+        </button>
+      </h2>
+      <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body text-light">
+          Only if you have the access key or the direct link. Otherwise, localStorage doesn’t sync across devices — that’s part of our privacy model.
+        </div>
+      </div>
+    </div>
+
+    <!-- Anonymity -->
+    <div class="accordion-item bg-transparent border border-secondary rounded mb-3">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+          Is this really anonymous?
+        </button>
+      </h2>
+      <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body text-light">
+          Yes. We do not collect your name, phone number, email, or IP address. No tracking scripts or analytics. It’s as anonymous as your device and internet connection allow.
+        </div>
+      </div>
+    </div>
+
+    <!-- Tor Browser -->
+    <div class="accordion-item bg-transparent border border-secondary rounded mb-3">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+          Will this work on Tor or private browsers?
+        </button>
+      </h2>
+      <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body text-light">
+          Yes — but keep in mind that localStorage may not persist in Tor sessions, and some features might reset on refresh or close. For maximum privacy, this is expected behavior.
+        </div>
+      </div>
+    </div>
+
+    <!-- Misuse & Abuse -->
+    <div class="accordion-item bg-transparent border border-secondary rounded mb-3">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+          What happens if someone uses Anonimapp to cause harm?
+        </button>
+      </h2>
+      <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body text-light">
+          We do not tolerate misuse. While we don’t track users, if we receive a valid legal request, we will comply to the extent possible — though we store very limited data by design. See our <a href="/terms_of_use" class="text-decoration-underline text-light">Terms of Use</a> for more.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

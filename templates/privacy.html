@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Policy – Anonimapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #f8f9fa;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .policy-box {
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.3s ease;
+    }
+    .policy-box:hover {
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.1);
+    }
+    .policy-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+    .policy-title i {
+      font-size: 1.3rem;
+      color: #a855f7;
+      margin-right: 0.75rem;
+    }
+    ul {
+      margin-top: 0.5rem;
+      padding-left: 1.6rem;
+    }
+    ul li {
+      margin-bottom: 0.4rem;
+    }
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      text-align: center;
+      color: #aaa;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg px-4 py-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center fw-bold gradient-text" href="/">
+        <i class="bi bi-incognito"></i>
+        <span class="gradient-text">nonimapp</span>
+      </a>
+
+      <!-- Nav Links -->
+      <div>
+        <a href="/" class="nav-link d-inline-block text-light me-3">Home</a>
+        <a href="/help" class="nav-link d-inline-block text-light me-3">Help</a>
+        <a href="/privacy" class="nav-link d-inline-block text-light me-3">Privacy</a>
+        <a href="/donate" class="nav-link d-inline-block text-light me-3">Donate</a>
+        <a href="/my_messages" class="btn btn-outline-light me-2">My Messages</a>
+        <a href="/submit" class="btn btn-primary gradient-btn">New Message</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5" style="max-width: 800px;">
+    <h1 class="section-title gradient-text">Our Privacy Commitment</h1>
+
+    <p class="mb-4 text-center text-light">
+      Anonimapp is built to give you a safe place to share anonymously —
+      no sign-ups, no tracking, no strings attached. Here’s what you need to know:
+    </p>
+
+    <div class="policy-box">
+      <div class="policy-title">
+        <i class="bi bi-person-lock"></i> We Don’t Collect Personal Info
+      </div>
+      <ul>
+        <li>No emails, phone numbers, or names are collected.</li>
+        <li>No account is needed to use Anonimapp.</li>
+      </ul>
+    </div>
+
+    <div class="policy-box">
+      <div class="policy-title">
+        <i class="bi bi-shield-slash"></i> No Tracking or Cookies
+      </div>
+      <ul>
+        <li>We don’t use cookies to track users.</li>
+        <li>No Google Analytics. No third-party trackers.</li>
+      </ul>
+    </div>
+
+    <div class="policy-box">
+      <div class="policy-title">
+        <i class="bi bi-lock-fill"></i> Your Messages Stay Private
+      </div>
+      <ul>
+        <li>Messages are stored temporarily and self-destruct after 3 views or 30 seconds.</li>
+        <li>Voice messages are deleted permanently after playback.</li>
+      </ul>
+    </div>
+
+    <div class="policy-box">
+      <div class="policy-title">
+        <i class="bi bi-hdd"></i> LocalStorage on Your Device
+      </div>
+      <ul>
+        <li>We use <code>localStorage</code> to help you view messages you've sent — only on your device.</li>
+        <li>If you clear browser data or switch devices, those messages won’t be visible anymore.</li>
+      </ul>
+    </div>
+
+    <div class="policy-box">
+      <div class="policy-title">
+        <i class="bi bi-shield-check"></i> Compliance
+      </div>
+      <ul>
+        <li>We comply with privacy laws like GDPR and CCPA by not collecting personal data.</li>
+      </ul>
+    </div>
+
+    <div class="policy-box">
+      <div class="policy-title">
+        <i class="bi bi-server"></i> Hosting & Security
+      </div>
+      <ul>
+        <li>Our server is protected using modern security standards.</li>
+        <li>All data is transmitted securely via HTTPS.</li>
+        <li>For even greater anonymity, you can access Anonimapp via privacy-first browsers like Tor.</li>
+        <li><code>localStorage</code> won't persist in Tor beyond the session — perfect for even stricter privacy.</li>
+      </ul>
+    </div>
+
+    <div class="policy-box">
+      <div class="policy-title">
+        <i class="bi bi-envelope-paper-fill"></i> Contact
+      </div>
+      <p>If you have any privacy-related concerns, reach out to us at:</p>
+      <strong class="text-light">anon@anonimapp.org</strong>
+    </div>
+
+    <footer>
+      &copy; 2025 Anonimapp — Privacy is not a feature. It’s a promise.
+    </footer>
+  </div>
+</body>
+</html>

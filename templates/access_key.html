@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Access Message – Anonimapp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #f8f9fa;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-btn {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      color: white;
+      border-radius: 999px;
+      transition: 0.3s ease;
+    }
+    .gradient-btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+    .container-box {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 600px;
+      margin: 4rem auto;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.15);
+    }
+  </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg px-4 py-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center fw-bold gradient-text" href="/">
+        <i class="bi bi-incognito"></i>nonimapp
+      </a>
+      <div>
+        <a href="/" class="nav-link d-inline-block text-light me-3">Home</a>
+        <a href="/help" class="nav-link d-inline-block text-light me-3">Help</a>
+        <a href="/privacy" class="nav-link d-inline-block text-light me-3">Privacy</a>
+        <a href="/donate" class="nav-link d-inline-block text-light me-3">Donate</a>
+        <a href="/access_key" class="btn btn-outline-light me-2">Access Message</a>
+        <a href="/my_messages" class="btn btn-outline-light me-2">My Messages</a>
+        <a href="/submit" class="btn btn-primary gradient-btn">New Message</a>
+      </div>
+    </div>
+  </nav> 
+
+  <!-- Access Form -->
+  <div class="container-box">
+    <h2 class="gradient-text fw-bold mb-4">
+      <i class="bi bi-key me-2"></i>Access Your Message
+    </h2>
+    <p class="mb-4">Enter the access key you were given. This key works only once.</p>
+
+    <form method="POST" action="/access_key">
+      <input type="text" name="message_key" class="form-control bg-dark text-light mb-3" placeholder="Paste your access key here..." required>
+      <button type="submit" class="gradient-btn">Access Message</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-danger mt-3">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="text-center mt-4">
+      <a href="/" class="btn btn-outline-light"><i class="bi bi-arrow-left"></i> Back to Home</a>
+    </div>
+  </div>
+
+</body>
+</html>

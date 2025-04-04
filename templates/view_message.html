@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5" style="max-width: 700px;">
+  <div id="message-container" class="container-box text-center" style="background: rgba(255,255,255,0.05); padding: 3rem; border-radius: 1.2rem; box-shadow: 0 0 25px rgba(168,85,247,0.2);">
+
+    <h2 class="gradient-text fw-bold mb-4">
+      <i class="bi bi-shield-lock-fill me-2"></i>Secret Message
+    </h2>
+
+    {% if message %}
+    <div class="message-content" style="background-color: #1e1e2f; padding: 1rem; border-radius: 0.75rem; font-size: 1.2rem; margin: 1.5rem 0; color: #f8f9fa;">
+      {{ message }}
+    </div>
+
+    <div class="countdown-warning" style="background-color: #441717; color: #f87171; padding: 0.75rem; border-radius: 0.5rem; font-weight: 500;">
+      <i class="bi bi-exclamation-triangle me-2"></i>
+      This message will disappear in <span id="countdown">{{ seconds_remaining }}</span> seconds...
+    </div>
+    {% else %}
+    <div class="alert alert-danger text-center">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+      This message has expired and is no longer available.
+    </div>
+    <div class="text-center mt-3">
+      <a href="/my_messages" class="btn btn-outline-light me-2">Return to My Messages</a>
+      <a href="/" class="btn btn-gradient text-light">Home</a>
+    </div>
+    {% endif %}
+
+  </div>
+  <div class="mt-4">
+    <form method="POST" action="{{ url_for('report_message', message_id=message_id) }}">
+      <button type="submit" class="btn btn-outline-danger">
+        <i class="bi bi-flag-fill me-1"></i> Report This Message
+      </button>
+    </form>
+  </div>  
+</div>
+
+{% if message %}
+<script>
+  let secondsRemaining = {{ seconds_remaining }};
+  const countdownEl = document.getElementById('countdown');
+  const messageContainer = document.getElementById('message-container');
+
+  const countdown = setInterval(() => {
+    secondsRemaining--;
+    countdownEl.textContent = secondsRemaining;
+
+    if (secondsRemaining <= 0) {
+      clearInterval(countdown);
+      messageContainer.classList.add('fade-out');
+
+      setTimeout(() => {
+        messageContainer.innerHTML = `
+          <div class="alert alert-danger text-center mt-4">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            This message has expired and is no longer available.
+          </div>
+          <div class="text-center mt-3">
+            <a href="/my_messages" class="btn btn-outline-light me-2">Return to My Messages</a>
+            <a href="/" class="btn btn-gradient text-light">Home</a>
+          </div>
+        `;
+        messageContainer.classList.remove('fade-out');
+      }, 700);
+    }
+  }, 1000);
+</script>
+{% endif %}
+{% endblock %}

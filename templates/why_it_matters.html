@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why It Matters – Anonimapp</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #000;
+      color: #f8f9fa;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .manifesto-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      padding: 4rem 1rem;
+    }
+
+    .manifesto-image {
+      max-width: 500px;
+      width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+    }
+
+    .manifesto-text {
+      max-width: 600px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    a.btn-back {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg px-4 py-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center fw-bold gradient-text" href="/">
+        <i class="bi bi-incognito"></i>nonimapp
+      </a>
+      <div>
+        <a href="/" class="nav-link d-inline-block text-light me-3">Home</a>
+        <a href="/help" class="nav-link d-inline-block text-light me-3">Help</a>
+        <a href="/privacy" class="nav-link d-inline-block text-light me-3">Privacy</a>
+        <a href="/donate" class="nav-link d-inline-block text-light me-3">Donate</a>
+        <a href="/access_message" class="btn btn-outline-light me-2">Access Messages Here</a>
+        <a href="/my_messages" class="btn btn-outline-light me-2">My Messages</a>
+        <a href="/submit" class="btn btn-primary gradient-btn">New Message</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="manifesto-section container">
+    <img src="{{ url_for('static', filename='img/lantern2.jpg') }}" alt="Why It Matters" class="manifesto-image" />
+
+    <div class="manifesto-text">
+      <h2 class="gradient-text">Why This Platform Could Matter</h2>
+
+      <p>
+        In a world saturated with noise, surveillance, and performative expression,
+        <strong>Anonimapp</strong> stands as a quiet space for truth.
+      </p>
+
+      <p>
+        Whether you’re a student silenced by cultural expectations, a whistleblower trapped in a stifling workplace, a journalist facing censorship, or a citizen living under political or religious persecution — this platform is built for you.
+
+Anonimapp exists for those who risk being unheard. For those whose words could cost them their jobs, their freedom, or even their lives. Here, your voice is safe. Your truth, protected.
+      </p>
+
+      <p>
+        It’s a space for grief, confession, protest, solidarity, and raw emotion — all protected by
+        ephemeral privacy. No accounts. No judgment. Just a safe place for your voice to exist,
+        even if only for a moment.
+      </p>
+
+      <p>
+        We don’t believe privacy is a luxury. We believe it’s a right. Anonimapp is not here to go viral,
+        but to be quietly valuable — one message, one voice at a time.
+      </p>
+
+      <a href="/" class="btn btn-outline-light btn-back">
+        <i class="bi bi-arrow-left me-1"></i> Back to Home
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>

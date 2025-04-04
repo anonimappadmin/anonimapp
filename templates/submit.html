@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compose Message – Anonimapp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000;
+      color: #f8f9fa;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-tab-btn {
+      background-color: #1f1f1f;
+      border: none;
+      color: #fff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 0.4rem;
+      margin-right: 0.5rem;
+    }
+    .nav-tab-btn.active {
+      background: linear-gradient(to right, #8b5cf6, #ec4899);
+      color: white;
+    }
+    .submit-btn {
+      background: linear-gradient(to right, #8b5cf6, #ec4899);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      padding: 1rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .submit-btn:hover {
+      opacity: 0.95;
+    }
+    .mic-button {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      border: none;
+      border-radius: 50%;
+      padding: 1rem;
+      color: white;
+      font-size: 2rem;
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem auto;
+    }
+    .my-message-box {
+      background-color: #1a1a1a;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      color: #ccc;
+    }
+    ::placeholder {
+        color: #ccc !important; /* Light grey for dark backgrounds */
+        opacity: 8; /* Fix low visibility in some browsers */
+    }
+
+    textarea::placeholder {
+        color: #ccc !important;
+    }
+    .mic-button {
+      background-color: #6b21a8;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50%;
+      font-size: 24px;
+      border: none;
+      transition: background 0.3s ease;
+    }
+    .mic-button:hover {
+      background-color: #9333ea;
+    }
+    .mic-button.recording {
+      background-color: #dc2626;
+    }
+    .mic-button {
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      color: white;
+      border: none;
+      padding: 1rem 1.4rem;
+      font-size: 1.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(168, 85, 247, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .mic-button.recording {
+      background: #dc2626 !important;
+    }
+
+</style>
+
+</head>  
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg px-4 py-3">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center fw-bold gradient-text" href="/">
+        <i class="bi bi-incognito"></i>nonimapp
+      </a>
+
+      <!-- Nav Links -->
+      <div>
+        <a href="/" class="nav-link d-inline-block text-light me-3">Home</a>
+        <a href="/help" class="nav-link d-inline-block text-light me-3">Help</a>
+        <a href="/privacy" class="nav-link d-inline-block text-light me-3">Privacy</a>
+        <a href="/donate" class="nav-link d-inline-block text-light me-3">Donate</a>
+        <a href="/access_message" class="btn btn-outline-light me-2">Access Message</a>
+        <a href="/my_messages" class="btn btn-outline-light mt-0">My Messages</a>
+        <a href="/submit" class="btn btn-primary gradient-btn">New Message</a>
+      </div>
+    </div>
+  </nav>      
+  <div class="container py-5">
+    <a href="/" class="text-light text-decoration-none mb-4 d-inline-block"><i class="bi bi-arrow-left"></i> Back to Home</a>
+
+    <h2 class="gradient-text fw-bold mb-4">Compose Your Message</h2>
+
+    <div class="mb-4">
+      <button class="nav-tab-btn active" id="textTab">Text</button>
+      <button class="nav-tab-btn" id="voiceTab">Voice</button>
+      <!--<button class="nav-tab-btn" id="myMessagesTab">My Messages</button>-->
+      <a href="/my_messages" class="btn btn-outline-light mt-0">My Messages</a>
+    </div>
+
+    <!-- TEXT AREA -->
+    <div id="textSection">
+        <form method="POST" action="/submit">
+            <input class="form-control bg-dark text-light border-secondary mb-3"
+            name="label"
+            type="text"
+            placeholder="Optional secret subject line (e.g. For red scarf)...">
+     
+            <textarea class="form-control bg-dark text-light border-secondary"
+                      name="message"
+                      rows="6"
+                      placeholder="Type your anonymous message here..."
+                      required></textarea>
+          
+            <button class="submit-btn">Create Anonymous Message</button>
+          </form>          
+      <p class="text-center mt-2 text">This message will self-destruct after 3 views or 30 seconds.</p>
+    </div>
+
+ <!-- VOICE RECORDING -->
+<div id="voiceSection" style="display: none;">
+  <div class="text-center bg-dark rounded p-4">
+    <button class="mic-button" id="recordBtn">
+      <i class="bi bi-mic"></i>
+    </button>
+    <p id="recordStatus">Click to start recording</p>
+    <p id="recordTimer" class="text-warning mt-2">Recording limit: 60 seconds</p>
+  </div>
+
+  <canvas id="waveform" width="300" height="60" class="my-3"></canvas>
+
+  <form id="voiceForm" method="POST" action="/upload_voice" enctype="multipart/form-data" style="display: none;">
+    <input type="file" name="audio_data" id="audioFileInput" hidden>
+  </form>
+
+  <p class="text-center mt-3 text">Voice messages are automatically deleted after 3 listens or 1 minute.</p>
+  
+</div>
+
+
+
+    <!-- MY MESSAGES -->
+    <div id="myMessagesSection" style="display: none;">
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="my-message-box mt-3">
+              {% if msg[2] %}
+                <p><i class="bi bi-soundwave"></i> Voice message</p>
+              {% else %}
+                <p><i class="bi bi-chat-left"></i> {{ msg[1] }}</p>
+              {% endif %}
+              <small class="text">
+                Sent {{ msg[4]|humantime }} – {{ msg[3] }} views remaining
+              </small>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="text-center mt-4 text">No messages yet.</div>
+        {% endif %}
+      </div>
+      
+
+      <script>
+        // Tab buttons
+        const textTab = document.getElementById("textTab");
+        const voiceTab = document.getElementById("voiceTab");
+        const myMessagesTab = document.getElementById("myMessagesTab");
+      
+        // Sections
+        const textSection = document.getElementById("textSection");
+        const voiceSection = document.getElementById("voiceSection");
+        const myMessagesSection = document.getElementById("myMessagesSection");
+      
+        // Utility to hide all sections
+        function hideAllSections() {
+          textSection.style.display = "none";
+          voiceSection.style.display = "none";
+          myMessagesSection.style.display = "none";
+        }
+      
+        // Utility to remove active tab styles
+        function clearActiveTabs() {
+          document.querySelectorAll(".nav-tab-btn").forEach(btn => {
+            btn.classList.remove("active");
+          });
+        }
+      
+        // Show selected tab
+        function showTab(sectionId, tabBtn) {
+          hideAllSections();
+          clearActiveTabs();
+      
+          document.getElementById(sectionId).style.display = "block";
+          tabBtn.classList.add("active");
+        }
+      
+        // Event listeners
+        textTab.addEventListener("click", () => {
+          showTab("textSection", textTab);
+        });
+      
+        voiceTab.addEventListener("click", () => {
+          showTab("voiceSection", voiceTab);
+        });
+      
+        myMessagesTab.addEventListener("click", () => {
+          showTab("myMessagesSection", myMessagesTab);
+        });
+      
+        // Default view
+        showTab("textSection", textTab);
+      </script>
+      
+</body>
+<script>
+  let mediaRecorder;
+  let audioChunks = [];
+  let stream;
+  let animationId;
+  let recordingTime = 0;
+  let timerInterval;
+
+  const recordBtn = document.getElementById("recordBtn");
+  const recordStatus = document.getElementById("recordStatus");
+  const recordTimer = document.getElementById("recordTimer");
+  const waveform = document.getElementById("waveform");
+  const canvasCtx = waveform.getContext("2d");
+
+  recordBtn.addEventListener("click", async () => {
+    if (!mediaRecorder || mediaRecorder.state === "inactive") {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const audioContext = new AudioContext();
+        const source = audioContext.createMediaStreamSource(stream);
+        const analyser = audioContext.createAnalyser();
+        source.connect(analyser);
+        analyser.fftSize = 256;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        const draw = () => {
+          animationId = requestAnimationFrame(draw);
+          analyser.getByteFrequencyData(dataArray);
+          canvasCtx.clearRect(0, 0, waveform.width, waveform.height);
+          const barWidth = waveform.width / bufferLength;
+          for (let i = 0; i < bufferLength; i++) {
+            const height = dataArray[i] / 2;
+            canvasCtx.fillStyle = "rgba(168, 85, 247, 0.7)";
+            canvasCtx.fillRect(i * barWidth, waveform.height - height, barWidth - 1, height);
+          }
+        };
+        draw();
+
+        audioChunks = []; // reset
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.start();
+        recordStatus.textContent = "Recording... Click again to stop.";
+        recordBtn.classList.add("recording");
+
+        // Show and start timer
+        recordingTime = 0;
+        recordTimer.style.display = "block";
+        recordTimer.textContent = "Recording: 0s / 60s";
+        timerInterval = setInterval(() => {
+          recordingTime++;
+          recordTimer.textContent = `Recording: ${recordingTime}s / 60s`;
+          if (recordingTime >= 60) {
+            stopRecording();
+          }
+        }, 1000);
+
+        mediaRecorder.ondataavailable = (e) => {
+          audioChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = async () => {
+  clearInterval(timerInterval);
+  cancelAnimationFrame(animationId);
+  stream.getTracks().forEach((track) => track.stop());
+  recordTimer.textContent = "Recording complete. Uploading...";
+
+  const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+  const formData = new FormData();
+  formData.append("audio_data", audioBlob);
+
+  try {
+    const response = await fetch("/upload_voice", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      const data = await response.json();  // ✅ fixed typo here
+      const voice_id = data.voice_id;
+      window.location.href = `/share/${voice_id}`;  // ✅ fixed string interpolation
+    } else {
+      recordStatus.textContent = "Upload failed.";
+      recordTimer.textContent = "";
+    }
+  } catch (err) {
+    recordStatus.textContent = "Error uploading voice.";
+    console.error(err);
+  }
+};
+
+      } catch (err) {
+        console.error("Recording failed:", err);
+        recordStatus.textContent = "Microphone access denied.";
+      }
+    } else if (mediaRecorder.state === "recording") {
+      stopRecording();
+    }
+  });
+
+  function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state === "recording") {
+      mediaRecorder.stop();
+      recordStatus.textContent = "Processing audio...";
+      recordBtn.classList.remove("recording");
+    }
+  }
+</script>
+
+ 
+</html>
