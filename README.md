@@ -147,6 +147,7 @@ anonimapp/
 ├── requirements.txt     # Python dependencies
 ├── anonimapp.db         # SQLite database (local)
 └── README.md
+---
 
 ## 📜 License
 
