@@ -19,10 +19,25 @@ Anonimapp is a privacy-first messaging platform that allows users to create anon
 ## 📌 Use Cases
 
 - **Whistleblowing**
-- **Abuse Reporting**
+- **Violence and Abuse Reporting**
 - **Mental Health Confessions**
 - **Anonymous Tips**
 - **Time-sensitive Secrets**
+- **Human Rights Abuses**
+- **Political and Religious Persecutions**
+
+---
+
+## 🔐 Additional Elaborated Use Cases
+- **Apologies or Final Words: Leaving a message that can’t be traced back, especially for unresolved conflicts or closure.**
+- **Anonymous Feedback in the Workplace: Letting employees or students send messages without fear of retaliation.**
+- **Coming Out Stories: For people who want to express their identity safely without revealing their identity.**
+- **End-of-Life Messages: Private thoughts or messages saved for specific individuals, accessible only with a key.**
+- **Romantic Confessions: A way to say something difficult or unspoken, without the weight of being known.**
+- **Sharing Evidence Without a Trail: Recordings, or testimonies shared securely without metadata trails.**
+- **Activist Communications: Exchanging sensitive info while protecting sender identity under oppressive regimes.**
+- **Custody or Family Disputes: Messages that must be heard but can't be reused in court or outside context.**
+- **And more...**
 
 ---
 
