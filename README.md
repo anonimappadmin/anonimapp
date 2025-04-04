@@ -78,3 +78,4 @@ Voice notes are saved as `.webm` files and follow the same key and expiration lo
    git clone https://github.com/anonimappadmin/anonimapp.git
    cd anonimapp
 
+2. 
