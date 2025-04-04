@@ -78,28 +78,28 @@ Voice notes are saved as `.webm` files and follow the same key and expiration lo
    git clone https://github.com/anonimappadmin/anonimapp.git
    cd anonimapp
 
-2. **Create Virtual Environment
+2. Create Virtual Environment
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-3. **Install Dependencies
+3. Install Dependencies
    ```bash
    pip install -r requirements.txt
 
-4. **Run Locally - a
+4. Run Locally - a
    ```bash
    python app.py
 
-5. **Run Locally - b
+5. Run Locally - b
    ```bash
    flask run
 
-6. **Then open your browser at:
+6. Then open your browser at:
    ```cpp
    http://127.0.0.1:5000
 
-7. **Deployment - Recommended Platforms
+## ☁️ Deployment - Recommended Platforms
    * Railway.app
    * Render.com
    * Fly.io
@@ -119,7 +119,7 @@ Voice notes are saved as `.webm` files and follow the same key and expiration lo
 - Upload size limits help prevent abuse
 
 ## 📁 Project Structure
-```csharp
+```csharp```
 anonimapp/
 │
 ├── app.py               # Main application
@@ -135,5 +135,4 @@ anonimapp/
 
 ## 📜 License
 
-
-  
+This project is released under the MIT License.
