@@ -48,15 +48,15 @@ Voice notes are saved as `.webm` files and follow the same key and expiration lo
 
 ## ⚙️ Tech Stack
 
-| Layer              | Technology         |
-|-------------------|--------------------|
-| Backend            | Python + Flask     |
-| Frontend           | HTML + Bootstrap   |
-| Database           | SQLite             |
-| Audio Handling     | Web Audio API      |
-| QR Generation      | `qrcode` Python lib|
-| Access Control     | Unique UUID Keys   |
-| Hosting (Planned)  | Railway / Render   |
+| Layer              | Technology                    |
+|--------------------|-------------------------------|
+| Backend            | Python + Flask                |
+| Frontend           | HTML + Bootstrap              |
+| Database           | SQLite(dev) + PostgreSQL(prod)|
+| Audio Handling     | Web Audio API                 |
+| QR Generation      | `qrcode` Python lib           |
+| Access Control     | Unique UUID Keys              |
+| Hosting (Planned)  | Railway / Render              |
 
 ---
 
