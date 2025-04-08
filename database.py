@@ -73,10 +73,10 @@ def save_message(content, label='', key=None):
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute("""
-            INSERT INTO messages (
-                id, content, label, is_voice, views_remaining, is_public, created_at, viewed_at
-            ) VALUES (?, ?, ?, ?, ?, ?, datetime('now'), NULL)
-        """, (key, content, label, 0, 3, 0))
+        INSERT INTO messages (
+            id, content, label, is_voice, views_remaining, is_public, created_at, viewed_at
+        ) VALUES (?, ?, ?, ?, ?, ?, datetime('now'), NULL)
+    """, (key, content, label, 0, 3, 0, None))
         conn.commit()
 
 
