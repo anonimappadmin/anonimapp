@@ -113,19 +113,21 @@ def index():
         flash("Something went wrong loading the homepage.", "danger")
         return render_template('landing.html', public_messages=[], now=datetime.utcnow())
 
-@limiter.limit("5 per minute")
 @app.route('/submit', methods=['GET', 'POST'])
+@limiter.limit("5 per minute")
 def submit():
-    if request.method == 'POST':
-        label = request.form.get('label', '')
-        content = request.form['message']
-        message_id = str(uuid.uuid4())
-        database.save_message(content, label=label, key=message_id)
+    try:
+        if request.method == 'POST':
+            label = request.form.get('label', '')
+            content = request.form['message']
+            message_id = str(uuid.uuid4())
+            database.save_message(content, label=label, key=message_id)
+            return redirect(url_for('share_message', message_id=message_id))
+        return render_template('submit.html')
+    except Exception as e:
+        flash(f"An error occurred: {str(e)}", 'error')
+        return render_template('submit.html'), 500
 
-        #flash(f"Private message created. Access key: {access_key}", 'info')
-        return redirect(url_for('share_message', message_id=message_id))
-
-    return render_template('submit.html')
 
 
 
