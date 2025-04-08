@@ -113,6 +113,7 @@ def index():
         flash("Something went wrong loading the homepage.", "danger")
         return render_template('landing.html', public_messages=[], now=datetime.utcnow())
 
+
 @app.route('/submit', methods=['GET', 'POST'])
 @limiter.limit("5 per minute")
 def submit():
@@ -127,13 +128,7 @@ def submit():
     except Exception as e:
         flash(f"An error occurred: {str(e)}", 'error')
         return render_template('submit.html'), 500
-
-
-
-
-
-
-
+        
 
 '''@app.route('/access_voice', methods=['GET', 'POST'])
 def access_voice():
