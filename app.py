@@ -24,7 +24,7 @@ limiter = Limiter(
     default_limits=["100 per hour"]  # Optional: global default
 )
 
-app.secret_key = 'anonimapp-secret'
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "anonimapp-secret")
 CORS(app)
 DB_FILE = 'anonimapp.db'
 DB_PATH = os.path.join(os.path.dirname(__file__), DB_FILE)
@@ -559,7 +559,7 @@ def inject_now():
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
 
 print(app.url_map)
 
