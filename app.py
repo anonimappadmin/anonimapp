@@ -379,7 +379,7 @@ def help():
 def faqs():
     return render_template('faqs.html')
 
-'''@app.route('/access_message', methods=['GET', 'POST'])
+@app.route('/access_message', methods=['GET', 'POST'])
 def access_message():
     if request.method == 'POST':
         key = request.form.get('message_key', '').strip()
@@ -402,7 +402,7 @@ def access_message():
             else:
                 return redirect(url_for('view_message', message_id=message_id))
 
-    return render_template("access_message.html")'''
+    return render_template("access_message.html")
 
 
 @app.route('/admin/login', methods=['GET', 'POST'])
