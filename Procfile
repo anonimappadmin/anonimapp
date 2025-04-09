@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: python reset_messages.py
