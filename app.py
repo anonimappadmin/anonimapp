@@ -25,9 +25,15 @@ limiter = Limiter(
     default_limits=["100 per hour"]  # Optional: global default
 )
 
+# Logging setup for production debugging
 file_handler = FileHandler('errorlog.txt')
 file_handler.setLevel(WARNING)
+
+stream_handler = StreamHandler()
+stream_handler.setLevel(WARNING)
+
 app.logger.addHandler(file_handler)
+app.logger.addHandler(stream_handler)
 
 
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "anonimapp-secret")
@@ -120,8 +126,9 @@ def index():
         return render_template('landing.html', public_messages=[], now=datetime.utcnow())
 
 
-@app.route('/submit', methods=['GET', 'POST'])
 @limiter.limit("5 per minute")
+
+@app.route('/submit', methods=['GET', 'POST'])
 def submit():
     try:
         if request.method == 'POST':
@@ -132,9 +139,10 @@ def submit():
             return redirect(url_for('share_message', message_id=message_id))
         return render_template('submit.html')
     except Exception as e:
-        app.logger.warning("Submit error: %s", str(e))
+        app.logger.warning(f"[Submit Error] {e}")
         traceback.print_exc()
-        return "Something went wrong", 500
+        return "Something went wrong while submitting your message.", 500
+
         
 
 '''@app.route('/access_voice', methods=['GET', 'POST'])
