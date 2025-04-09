@@ -43,6 +43,10 @@ DB_PATH = os.path.join(os.path.dirname(__file__), DB_FILE)
 UPLOAD_FOLDER = os.path.join('static', 'voices')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
+# Ensure necessary directories exist
+os.makedirs(os.path.join('static', 'qr'), exist_ok=True)
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
 
 
 @limiter.request_filter
