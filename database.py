@@ -107,7 +107,14 @@ def init_db():
             timestamp TEXT DEFAULT CURRENT_TIMESTAMP
         )
     ''')
-
+    
+    # Debug: log current schema for messages
+    cursor.execute("PRAGMA table_info(messages)")
+    schema = cursor.fetchall()
+    print("📌 messages table schema:")
+    for col in schema:
+        print(col)
+    
     conn.commit()
     conn.close()
 
