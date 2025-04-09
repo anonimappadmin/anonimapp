@@ -422,19 +422,22 @@ def access_message():
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        admin = get_admin_by_username(username)
+        try:
+            username = request.form['username']
+            password = request.form['password']
+            admin = get_admin_by_username(username)
 
-        if admin and check_password_hash(admin[2], password):  # admin[2] = hashed password
-            session['admin_logged_in'] = True
-            session['admin_username'] = admin[1]
-            flash('Logged in successfully!')
-            return redirect(url_for('admin_dashboard'))
-        else:
-            flash('Invalid credentials. Please try again.')
-
-    return render_template('admin.html')  # This is your login form
+            if admin and check_password_hash(admin[2], password):
+                session['admin_logged_in'] = True
+                session['admin_username'] = admin[1]
+                flash('Logged in successfully!')
+                return redirect(url_for('admin_dashboard'))
+            else:
+                flash('Invalid credentials. Please try again.')
+        except Exception as e:
+            app.logger.error(f"[Admin Login Error] {e}")
+            flash('Error during login. Contact support.', 'danger')
+    return render_template('admin.html')
 
 @app.route('/admin/dashboard')
 @admin_required
