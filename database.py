@@ -38,7 +38,7 @@ def init_db():
     conn = connect()
     cursor = conn.cursor()
 
-    # Messages Table
+    # Create messages table with full schema (if it doesn't exist)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS messages (
             id TEXT PRIMARY KEY,
@@ -49,23 +49,28 @@ def init_db():
             is_public INTEGER DEFAULT 0,
             created_at TEXT DEFAULT (datetime('now')),
             viewed_at TEXT DEFAULT NULL,
-            is_reported INTEGER DEFAULT 0
+            is_reported INTEGER DEFAULT 0,
             expires_at TEXT DEFAULT NULL
         )
     ''')
-    # Safely add expires_at column if missing
-    try:
-        cursor.execute("ALTER TABLE messages ADD COLUMN expires_at TEXT")
-    except sqlite3.OperationalError:
-        pass  # Column already exists, safe to ignore
 
-    # Try to print existing columns in the messages table
+    # Ensure expires_at column exists (safety check for older DBs)
+    cursor.execute("PRAGMA table_info(messages)")
+    existing_columns = [col[1] for col in cursor.fetchall()]
+    if 'expires_at' not in existing_columns:
+        print("⚠️  Adding missing column 'expires_at'...")
+        try:
+            cursor.execute("ALTER TABLE messages ADD COLUMN expires_at TEXT DEFAULT NULL")
+            print("✅ 'expires_at' column added successfully.")
+        except Exception as e:
+            print("❌ Failed to add 'expires_at' column:", e)
+
+    # Show current schema for confirmation
     cursor.execute("PRAGMA table_info(messages)")
     columns = cursor.fetchall()
     print("\n📋 Columns in 'messages' table:")
     for col in columns:
-        print(f" - {col[1]} ({col[2]})")  # col[1] = name, col[2] = type
-
+        print(f" - {col[1]} ({col[2]})")
     
     # Access Keys Table
     cursor.execute('''
