@@ -569,6 +569,12 @@ def admin_logout():
 def inject_now():
     return {'now': datetime.utcnow()}
 
+with app.app_context():
+    try:
+        init_db()
+        print("✅ Database initialized (or already exists).")
+    except Exception as e:
+        print("⚠️  Failed to initialize database:", e)
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0', debug=True, port=int(os.environ.get('PORT', 5000)))
