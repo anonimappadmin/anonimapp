@@ -52,6 +52,11 @@ def init_db():
             is_reported INTEGER DEFAULT 0
         )
     ''')
+    # Safely add expires_at column if missing
+    try:
+        cursor.execute("ALTER TABLE messages ADD COLUMN expires_at TEXT")
+    except sqlite3.OperationalError:
+        pass  # Column already exists, safe to ignore
 
     # Access Keys Table
     cursor.execute('''
