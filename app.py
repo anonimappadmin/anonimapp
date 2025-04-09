@@ -14,7 +14,8 @@ import secrets
 from flask import jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-
+import logging
+from logging import StreamHandler, WARNING
 
 
 app = Flask(__name__)
@@ -23,6 +24,11 @@ limiter = Limiter(
     app=app,
     default_limits=["100 per hour"]  # Optional: global default
 )
+
+file_handler = FileHandler('errorlog.txt')
+file_handler.setLevel(WARNING)
+app.logger.addHandler(file_handler)
+
 
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "anonimapp-secret")
 CORS(app)
@@ -126,8 +132,9 @@ def submit():
             return redirect(url_for('share_message', message_id=message_id))
         return render_template('submit.html')
     except Exception as e:
-        flash(f"An error occurred: {str(e)}", 'error')
-        return render_template('submit.html'), 500
+        app.logger.warning("Submit error: %s", str(e))
+        traceback.print_exc()
+        return "Something went wrong", 500
         
 
 '''@app.route('/access_voice', methods=['GET', 'POST'])
