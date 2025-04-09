@@ -15,8 +15,8 @@ from flask import jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import logging
-from logging import StreamHandler, WARNING
-
+from logging import FileHandler, StreamHandler, WARNING
+import traceback
 
 app = Flask(__name__)
 limiter = Limiter(
