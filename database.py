@@ -36,16 +36,23 @@ def safe_db_execute(query, params=(), fetch=False):
 def init_db():
     conn = connect()
     cursor = conn.cursor()
+
+    # Messages Table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS messages (
             id TEXT PRIMARY KEY,
             content TEXT,
+            label TEXT,
             is_voice INTEGER DEFAULT 0,
             views_remaining INTEGER DEFAULT 3,
             is_public INTEGER DEFAULT 0,
-            created_at TEXT DEFAULT (datetime('now'))
+            created_at TEXT DEFAULT (datetime('now')),
+            viewed_at TEXT DEFAULT NULL,
+            is_reported INTEGER DEFAULT 0
         )
     ''')
+
+    # Access Keys Table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS access_keys (
             key TEXT PRIMARY KEY,
@@ -53,8 +60,30 @@ def init_db():
             used INTEGER DEFAULT 0
         )
     ''')
+
+    # Admin Table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS admin (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    ''')
+
+    # Admin Logs Table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS admin_logs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            admin_username TEXT,
+            action TEXT,
+            message_id TEXT,
+            timestamp TEXT DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
     conn.commit()
     conn.close()
+
 
 def get_public_messages():
     conn = connect()
@@ -165,16 +194,16 @@ def create_admin(username, password):
     return True
 
 def get_admin_by_username(username):
-    conn = sqlite3.connect(DB_PATH)
-    c = conn.cursor()
-    c.execute("SELECT * FROM admin WHERE username = ?", (username,))
-    admin = c.fetchone()
-    conn.close()
-    return admin
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        c = conn.cursor()
+        c.execute("SELECT * FROM admin WHERE username = ?", (username,))
+        admin = c.fetchone()
+        return admin
+    except sqlite3.OperationalError as e:
+        print(f"[Admin Login Error] {e}")
+        return None
+    finally:
+        conn.close()
 
-    # Mark key as used
-    cursor.execute("UPDATE message_keys SET used = 1 WHERE key = ?", (provided_key,))
-    conn.commit()
-    conn.close()
-    return True, None
 
