@@ -59,6 +59,14 @@ def init_db():
     except sqlite3.OperationalError:
         pass  # Column already exists, safe to ignore
 
+    # Try to print existing columns in the messages table
+    cursor.execute("PRAGMA table_info(messages)")
+    columns = cursor.fetchall()
+    print("\n📋 Columns in 'messages' table:")
+    for col in columns:
+        print(f" - {col[1]} ({col[2]})")  # col[1] = name, col[2] = type
+
+    
     # Access Keys Table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS access_keys (
