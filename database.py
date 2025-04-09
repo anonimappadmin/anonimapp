@@ -101,12 +101,17 @@ def get_public_messages():
 def save_message(content, label='', key=None):
     with sqlite3.connect(DB_PATH) as conn:
         cursor = conn.cursor()
+
+        # Calculate expiration time: 30 seconds from now
+        expires_at = datetime.utcnow() + timedelta(seconds=30)
+
         cursor.execute("""
-            INSERT INTO messages (
-                id, content, label, is_voice, views_remaining, is_public, created_at
-            ) VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
-        """, (key, content, label, 0, 3, 0))
+            INSERT INTO messages (id, content, label, is_voice, views_remaining, is_public, created_at, expires_at)
+            VALUES (?, ?, ?, ?, 3, 0, datetime('now'), ?)
+        """, (key, content, label, 0, expires_at.strftime("%Y-%m-%d %H:%M:%S")))
+
         conn.commit()
+
 
 
 def decrement_views(message_id):
