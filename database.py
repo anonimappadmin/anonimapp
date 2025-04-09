@@ -38,7 +38,7 @@ def init_db():
     conn = connect()
     cursor = conn.cursor()
 
-    # Create messages table with full schema (if it doesn't exist)
+    # Ensure messages table has all columns including `expires_at`
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS messages (
             id TEXT PRIMARY KEY,
@@ -50,36 +50,43 @@ def init_db():
             created_at TEXT DEFAULT (datetime('now')),
             viewed_at TEXT DEFAULT NULL,
             is_reported INTEGER DEFAULT 0,
-            expires_at TEXT DEFAULT NULL
+            expires_at TEXT
         )
     ''')
 
-    # Ensure expires_at column exists (safety check for older DBs)
-    cursor.execute("PRAGMA table_info(messages)")
-    existing_columns = [col[1] for col in cursor.fetchall()]
-    if 'expires_at' not in existing_columns:
-        print("⚠️  Adding missing column 'expires_at'...")
-        try:
-            cursor.execute("ALTER TABLE messages ADD COLUMN expires_at TEXT DEFAULT NULL")
-            print("✅ 'expires_at' column added successfully.")
-        except Exception as e:
-            print("❌ Failed to add 'expires_at' column:", e)
-
-    # Show current schema for confirmation
-    cursor.execute("PRAGMA table_info(messages)")
-    columns = cursor.fetchall()
-    print("\n📋 Columns in 'messages' table:")
-    for col in columns:
-        print(f" - {col[1]} ({col[2]})")
-    
-    # Access Keys Table
+    # Ensure access_keys table exists
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS access_keys (
-            key TEXT PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             message_id TEXT,
+            key TEXT,
             used INTEGER DEFAULT 0
         )
     ''')
+
+    # Ensure admin table exists
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS admin (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            password TEXT NOT NULL
+        )
+    ''')
+
+    # Admin logs
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS admin_logs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            admin_username TEXT,
+            action TEXT,
+            message_id TEXT,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+
+    conn.commit()
+    conn.close()
+
 
     # Admin Table
     cursor.execute('''
