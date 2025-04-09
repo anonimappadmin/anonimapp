@@ -50,6 +50,7 @@ def init_db():
             created_at TEXT DEFAULT (datetime('now')),
             viewed_at TEXT DEFAULT NULL,
             is_reported INTEGER DEFAULT 0
+            expires_at TEXT DEFAULT NULL
         )
     ''')
     # Safely add expires_at column if missing
